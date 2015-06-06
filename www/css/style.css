@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+.pane-custom1 {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../img/home.jpeg');
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}

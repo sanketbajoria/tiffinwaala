@@ -53,4 +53,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+.controller('homePageCtrl',function($scope,$location,$ionicHistory){
+
 });
