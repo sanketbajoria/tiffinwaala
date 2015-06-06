@@ -55,21 +55,21 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.vendors', {
+      url: "/vendors",
       views: {
         'menuContent': {
-          templateUrl: "templates/playlists.html",
+          templateUrl: "templates/vendors.html",
           controller: 'PlaylistsCtrl'
         }
       }
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: "/vendor/:id",
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
+        templateUrl: "templates/vendor.html",
         controller: 'PlaylistCtrl'
       }
     }
