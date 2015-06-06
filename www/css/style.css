@@ -10,3 +10,11 @@
     background-size: cover;
 
 }
+
+.home-header-text {
+    color: white;
+    text-align: center;
+}
+.search-bar {
+    background-color: rgb(247, 147, 42);
+}
