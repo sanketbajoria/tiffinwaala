@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: "templates/vendors.html",
-          controller: 'PlaylistsCtrl'
+          controller: 'VendorsCtrl'
         }
       }
     })
@@ -70,7 +70,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/vendor.html",
-        controller: 'PlaylistCtrl'
+        controller: 'VendorCtrl'
       }
     }
   });
