@@ -19,6 +19,12 @@
     background-color: rgb(247, 147, 42);
 }
 
+.margin10 {
+    margin-right: 10px;
+}
+.margin10Top {
+    margin-top: 10%;
+}
 @import url(http://fonts.googleapis.com/css?family=Lato);
 body{margin:0; padding:0;
     /* background:url(../images/body-bg.png); css -added */
