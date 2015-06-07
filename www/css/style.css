@@ -389,3 +389,8 @@ a.ReadMore:hover{text-decoration:underline;}
 
 .contact{color:#fff;}
 .contact a, a:hover{color:#fff; text-decoration:none;}
+
+.ItemsDetailsBox table td{
+    padding: 5px;
+    border: none;
+}
