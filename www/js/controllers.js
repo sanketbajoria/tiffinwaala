@@ -55,6 +55,9 @@ angular.module('starter.controllers', [])
 
     .controller('VendorCtrl', function ($scope, $stateParams, Vendors) {
         $scope.vendor = Vendors.get({ id: $stateParams.id });
+        $scope.menuItem=function(itemId){
+
+        };
     })
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
     })
