@@ -89,5 +89,9 @@ angular.module('starter.controllers', [])
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
-
+        $scope.selectedCity='jaipur';
+        $scope.find=function (city){
+            debugger
+            $location.url('app/vendors/'+city);
+        }
     });

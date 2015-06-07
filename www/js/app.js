@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
-    .constant('SERVER_PATH', 'http://localhost:5000')
+    .constant('SERVER_PATH', 'http://localhost:3000')
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -33,7 +33,8 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
                 url: "/home",
                 views: {
                     'menuContent': {
-                        templateUrl: "templates/home.html"
+                        templateUrl: "templates/home.html",
+                        controller: 'homePageCtrl'
                     }
                 }
             })
@@ -56,7 +57,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
                 }
             })
             .state('app.vendors', {
-                url: "/vendors",
+                url: "/vendors/:city",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/vendors.html",
@@ -66,7 +67,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
             })
 
             .state('app.single', {
-                url: "/vendors/:id",
+                url: "/vendor/:id",
                 views: {
                     'menuContent': {
                         templateUrl: "templates/vendor.html",
@@ -85,7 +86,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');
     }).factory('Vendors', function ($resource,SERVER_PATH) {
-        return $resource(SERVER_PATH + '/vendors/:id');
+        return $resource(SERVER_PATH + '/api/vendors/:id');
     }).directive("appMap", function ($window) {
     return {
         restrict: "E",
