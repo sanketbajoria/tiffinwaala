@@ -400,3 +400,8 @@ a.ReadMore:hover{text-decoration:underline;}
     padding: 5px;
     border: none;
 }
+
+.custom-select {
+    width: 100%;
+    min-height: 46px;
+}
