@@ -1,5 +1,14 @@
 <ion-view view-title="Tiffen wala">
-  <ion-content>
-    <h1>Playlist</h1>
-  </ion-content>
+    <ion-content class="has-header">
+        <div class="list card">
+            <div class="item item-thumbnail-left">
+                <img ng-src="img/home.jpeg" style="width: 50px;">
+
+                <h2>{{vendor.title}}</h2>
+
+                <p>{{vendor.description}}</p>
+                <i class="icon ion-ios-telephone-outline">&nbsp;{{vendor.tel}}</i>
+            </div>
+        </div>
+    </ion-content>
 </ion-view>
