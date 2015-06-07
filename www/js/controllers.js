@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
         };
     })
 
-    .controller('VendorsCtrl', function ($scope, Vendors,$location,$state) {
+    .controller('VendorsCtrl', function ($scope, Vendors, $location, $state) {
         $scope.vendors = Vendors.query();
         $scope.callMe = function (vender, event) {
             event.preventDefault();
@@ -49,14 +49,41 @@ angular.module('starter.controllers', [])
         };
         $scope.locateMe = function (vender, event) {
             event.preventDefault();
-            $state.transitionTo('app.gpsView',{id:vender.id});
+            $state.transitionTo('app.gpsView', {id: vender.id});
         }
     })
 
     .controller('VendorCtrl', function ($scope, $stateParams, Vendors) {
         $scope.vendor = Vendors.get({ id: $stateParams.id });
-        $scope.menuItem=function(itemId){
-
+        $scope.orderedItems={};
+        $scope.addToCartModal=true;
+        $scope.orderedItems.Veg= [
+            {name: 'Veg Corn Soup', price: 75},
+            {name: 'Veg Hot & Sour Soup', price: 75},
+            {name: 'Veg Cantonese Soup', price: 75},
+            {name: 'Cream Of Tomato Soup', price: 75}
+        ];
+        $scope.orderedItems.NonVeg=[
+            {name: 'Chicken Corn Soup', price: 90},
+            {name: 'Chicken Clear Soup', price: 90},
+            {name: 'Chicken Cantonese Soup', price: 90},
+            {name: 'Chicken Hot & Sour Soup', price: 90}
+        ]
+        $scope.menuItem = function (itemId) {
+            if (1236 == Number(itemId)) {
+                $scope.orderedItems.Veg= [
+                    {name: 'Veg Corn Soup', price: 75},
+                    {name: 'Veg Hot & Sour Soup', price: 75},
+                    {name: 'Veg Cantonese Soup', price: 75},
+                    {name: 'Cream Of Tomato Soup', price: 75}
+                ];
+                $scope.orderedItems.NonVeg=[
+                    {name: 'Chicken Corn Soup', price: 90},
+                    {name: 'Chicken Clear Soup', price: 90},
+                    {name: 'Chicken Cantonese Soup', price: 90},
+                    {name: 'Chicken Hot & Sour Soup', price: 90}
+                ]
+            }
         };
     })
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
