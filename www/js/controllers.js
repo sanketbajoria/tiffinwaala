@@ -49,7 +49,7 @@ angular.module('starter.controllers', [])
         };
         $scope.locateMe = function (vender, event) {
             event.preventDefault();
-            $state.go('app.gpsView',{id:vender.id});
+            $state.transitionTo('app.gpsView',{id:vender.id});
         }
     })
 
