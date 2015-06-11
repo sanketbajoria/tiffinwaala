@@ -1,0 +1,25 @@
+<ion-view title="Register"> <ion-content>
+<form ng-submit="registerUser()">
+	<div class="list">
+		<label class="item item-input item-stacked-label"> <span
+			class="input-label">Title</span> <input type="text"
+			ng-model="schedule.title" placeholder="Chotta Plate">
+		</label> <label class="item item-input item-stacked-label"> <span
+			class="input-label">Description</span> <textarea
+				ng-model="schedule.foodDescription" placeholder="Roti, Dal, sabzi"></textarea>
+		</label> <label class="item item-input item-stacked-label"> <span
+			class="input-label">Date</span> <input type="date"
+			ng-model="schedule.orderDate" placeholder="24 Mar 2015">
+
+		</label> <label class="item item-input item-stacked-label"> <span
+			class="input-label">CutOff Time</span> <i>00:00</i> <input
+			type="range" name="volume" min="0" max="1440" value="33"
+			ng-model="user.orderCutOffTime"> <i>23:59</i>
+		</label> <label class="item">
+			<button class="button button-block button-dark" type="submit">Create
+			</button>
+		</label>
+	</div>
+
+</form>
+</ion-content> </ion-view>

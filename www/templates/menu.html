@@ -8,11 +8,8 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
-      <ion-nav-buttons side="right">
-        <button class="button button-icon button-balanced" ng-click="login()">Sign in</button>
-      </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view name="menuContent"></ion-nav-view>
+    <ion-nav-view name="content"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
@@ -21,11 +18,14 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
+        <ion-item menu-close href="">
+          Profile
         </ion-item>
-        <ion-item menu-close href="#/app/vendors">
-          Vendors
+        <ion-item ng-if="isVendor()" menu-close href="">
+          Create Schedule
+        </ion-item>
+        <ion-item menu-close ng-click="logout()">
+          Logout
         </ion-item>
       </ion-list>
     </ion-content>

@@ -29,29 +29,42 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
                 templateUrl: "templates/menu.html",
                 controller: 'AppCtrl'
             })
+            .state('login', {
+                url: "/login",
+                templateUrl:"templates/login.html",
+                controller: 'LoginCtrl'
+            })
+            .state('registerUser', {
+                url: "/registerUser",
+                templateUrl: "templates/registerUser.html",
+                controller: 'RegisterUserCtrl'
+            })
+            .state('registerVendor', {
+                url: "/registerVendor",
+                templateUrl: "templates/registerVendor.html",
+                controller: 'RegisterVendorCtrl'
+            })
             .state('app.home', {
                 url: "/home",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/home.html",
                         controller: 'homePageCtrl'
                     }
                 }
             })
-
             .state('app.search', {
                 url: "/search",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/search.html"
                     }
                 }
             })
-
             .state('app.browse', {
                 url: "/browse",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/browse.html"
                     }
                 }
@@ -59,17 +72,16 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
             .state('app.vendors', {
                 url: "/vendors/:city",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/vendors.html",
                         controller: 'VendorsCtrl'
                     }
                 }
             })
-
             .state('app.single', {
                 url: "/vendor/:id",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/vendor.html",
                         controller: 'VendorCtrl'
                     }
@@ -77,7 +89,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers'])
             }).state('app.gpsView', {
                 url: "/gpsView/:id",
                 views: {
-                    'menuContent': {
+                    'content': {
                         templateUrl: "templates/gpsView.html",
                         controller: 'GpsViewCtrl'
                     }

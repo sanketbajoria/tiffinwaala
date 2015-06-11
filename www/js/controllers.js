@@ -1,48 +1,116 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $location, userSession, $state, $ionicHistory) {
 
-        // With the new view caching in Ionic, Controllers are only called
-        // when they are recreated or on app start, instead of every page change.
-        // To listen for when this page is active (for example, to refresh data),
-        // listen for the $ionicView.enter event:
-        //$scope.$on('$ionicView.enter', function(e) {
-        //});
+    	$ionicHistory.clearHistory();
+    	if(!userSession.isAuthenticated()){
+    		
+    		$state.go("login")
+    	}else{
+    		if(userSession.isVendor()){
+    			$location.path("#/app/vendor");
+    		}else{
+    			$location.path("#/app/home");
+    		}
+    	}
+    	
+    	$scope.go = function ( path ) {
+    		  $location.path( path );
+    	};
+    	
+    	$scope.logout = function(){
+    		Parse.User.logOut();
+    		userSession.invalidate();
+    		$state.go('login');
+    	}
 
-        // Form data for the login modal
-        $scope.loginData = {};
-
-        // Create the loxgin modal that we will use later
-        $ionicModal.fromTemplateUrl('templates/login.html', {
-            scope: $scope
-        }).then(function (modal) {
-            $scope.modal = modal;
-        });
-
-        // Triggered in the login modal to close it
-        $scope.closeLogin = function () {
-            $scope.modal.hide();
-        };
-
-        // Open the login modal
-        $scope.login = function () {
-            $scope.modal.show();
-        };
-
-        // Perform the login action when the user submits the login form
-        $scope.doLogin = function () {
-            console.log('Doing login', $scope.loginData);
-
-            // Simulate a login delay. Remove this and replace with your login
-            // code if using a login system
-            $timeout(function () {
-                $scope.closeLogin();
-            }, 1000);
-        };
     })
+    
+    .controller('LoginCtrl', function ($scope, $state, userSession, $ionicHistory) {
+    	// Form data for the login modal
+    	$ionicHistory.clearHistory();
+        $scope.loginData = {};
+        $scope.errors = {};
+     // Perform the login action when the user submits the login form
+        $scope.doLogin = function () {
+        	Parse.User.logIn($scope.loginData.username, $scope.loginData.password, {
+        		  success: function(user) {
+        			  userSession.create(user);
+        	          $state.go('app.home');
+        		  },
+        		  error: function(user, error) {
+        		    $scope.errors.msg="Invalid user or password";
+        		    $scope.$digest();
+        		  }
+        	});
+        };
+
+
+    })
+    
+    .controller('RegisterUserCtrl', function ($scope, $state, userSession) {
+    	// Form data for the login modal
+        $scope.user = {};
+        $scope.registerUser = function(){
+        	var user = new Parse.User();
+            user.set("username", $scope.user.username);
+            user.set("password", $scope.user.password);
+            user.set("fullName", $scope.user.fullName);
+            user.set("contactNo", $scope.user.contactNo);
+            user.set("address", $scope.user.address);
+
+            user.signUp(null, {
+              success: function(user) {
+                userSession.create(user);
+                $state.go('app.home');
+              },
+              error: function(user, error) {
+                alert("Error: " + error.code + " " + error.message);
+              }
+            });
+
+        }
+    })
+    
+    .controller('RegisterVendorCtrl', function ($scope, $state, userSession) {
+    	// Form data for the login modal
+        $scope.user = {};
+        $scope.registerVendor = function(){
+        	var user = new Parse.User();
+            user.set("username", $scope.user.username);
+            user.set("password", $scope.user.password);
+            user.set("fullName", $scope.user.fullName);
+            user.set("contactNo", $scope.user.contactNo);
+            user.set("address", $scope.user.address);
+            user.set("vendor", true);
+            user.signUp(null, {
+              success: function(user) {
+            	  userSession.create(user);
+                  $state.go('app.home');
+              },
+              error: function(user, error) {
+                alert("Error: " + error.code + " " + error.message);
+              }
+            });
+        }
+    })
+    
+    
+
 
     .controller('VendorsCtrl', function ($scope, Vendors, $location, $state) {
-        $scope.vendors = Vendors.query();
+        $scope.vendors = [
+                            {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 1, title: "Zayka Tiffin Service", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 2, title: "Sabka Tiffin", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 3, title: "Satva Foods", name: "Brett Rudd", twitter_id: "@brettrudd", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 4, title: "KGN Caterers", name: "Joe Bowser", twitter_id: "@infil00p", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 5, title: "Dipaanjali Tiffin Service", name: "Brian Leroux", twitter_id: "@brianleroux", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 6, title: "Ganapatti Thali", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 7, title: "DRS Kitchen", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 8, title: "Food Connect ", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+                            {id: 9, title: "Mauli Tiffin Service", name: "Jason Weathersby", twitter_id: "@jasonweathersby", description: "description",tel:'+(91)-22-38559670'},
+                          ];
         $scope.callMe = function (vender, event) {
             event.preventDefault();
             window.location = 'tel:' + vender.tel;
@@ -54,7 +122,24 @@ angular.module('starter.controllers', [])
     })
 
     .controller('VendorCtrl', function ($scope, $stateParams, Vendors) {
-        $scope.vendor = Vendors.get({ id: $stateParams.id });
+    	var vendors = [
+                          {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 1, title: "Zayka Tiffin Service", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 2, title: "Sabka Tiffin", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 3, title: "Satva Foods", name: "Brett Rudd", twitter_id: "@brettrudd", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 4, title: "KGN Caterers", name: "Joe Bowser", twitter_id: "@infil00p", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 5, title: "Dipaanjali Tiffin Service", name: "Brian Leroux", twitter_id: "@brianleroux", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 6, title: "Ganapatti Thali", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 7, title: "DRS Kitchen", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 8, title: "Food Connect ", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+                          {id: 9, title: "Mauli Tiffin Service", name: "Jason Weathersby", twitter_id: "@jasonweathersby", description: "description",tel:'+(91)-22-38559670'},
+                        ];
+    	for(var i=0;i<vendors.length;i++){
+    		if(vendors[i].id==$stateParams.id){
+    			$scope.vendor = vendors[i];
+    		}
+    	}
+        
         $scope.orderedItems={};
         $scope.addToCartModal=true;
         $scope.orderedItems.Veg= [
@@ -94,4 +179,19 @@ angular.module('starter.controllers', [])
             debugger
             $location.url('app/vendors/'+city);
         }
+    })
+    .factory('userSession', function () {
+    	this.isAuthenticated = function(){
+    		return this.user;
+    	}
+    	this.isVendor = function(){
+    		return this.user && this.user.vendor;
+    	}
+        this.create = function (user) {
+            this.user = user;
+        };
+        this.invalidate = function () {
+            this.user = null;
+        };
+        return this;
     });
