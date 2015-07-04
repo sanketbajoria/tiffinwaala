@@ -172,6 +172,35 @@ angular.module('starter.controllers', [])
         };
     })
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
+        var customerLocation = L.map('customerLocation', {
+            center: [
+                [20.0, 5.0]
+            ],
+            scrollWheelZoom: false,
+            inertia: true,
+            inertiaDeceleration: 2000
+        });
+        customerLocation.setView([20.0, 5.0], 15);
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 25
+        }).addTo(customerLocation);
+        customerLocation.locate({setView: true, maxZoom: 13}).on('locationfound', function (e) {
+            var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)');
+            var circle = L.circle([e.latitude, e.longitude], e.accuracy / 2, {
+                weight: 1,
+                color: 'blue',
+                fillColor: '#cacaca',
+                fillOpacity: 0.2
+            });
+            customerLocation.addLayer(marker);
+            customerLocation.addLayer(circle);
+        })
+            .on('locationerror', function (e) {
+                console.log(e);
+                alert("Location access denied.");
+            });
+
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
         $scope.selectedCity='jaipur';
