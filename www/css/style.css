@@ -414,3 +414,10 @@ a.ReadMore:hover{text-decoration:underline;}
 .customerLocation .leaflet-top .leaflet-control{
     margin-top: 50px;
 }
+
+.place-autocomplete{
+    position: absolute;
+    top: 120px;
+    left: 10px;
+    z-index: 1002;
+}
