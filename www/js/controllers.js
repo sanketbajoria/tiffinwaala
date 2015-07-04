@@ -173,6 +173,7 @@ angular.module('starter.controllers', [])
     })
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
         $scope.place = null;
+        $scope.order={};
         var customerLocation = L.map('customerLocation', {
             center: [
                 [20.0, 5.0]
