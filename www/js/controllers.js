@@ -217,6 +217,8 @@ angular.module('starter.controllers', [])
             }
         }
 
+    }).controller('RegOptionsCtrl', function ($scope, $stateParams){
+
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
         $scope.selectedCity='jaipur';
