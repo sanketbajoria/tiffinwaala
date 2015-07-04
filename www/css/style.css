@@ -421,3 +421,9 @@ a.ReadMore:hover{text-decoration:underline;}
     left: 10px;
     z-index: 1002;
 }
+
+.order-map-button {
+    position: fixed;
+    bottom: 30px;
+    left: 1%;
+}
