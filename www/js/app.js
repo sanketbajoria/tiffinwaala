@@ -94,6 +94,14 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                         controller: 'GpsViewCtrl'
                     }
                 }
+            }).state('app.regOptions', {
+                url: "/regOptions",
+                views: {
+                    'content': {
+                        templateUrl: "templates/regOptions.html",
+                        controller: 'RegOptionsCtrl'
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');
