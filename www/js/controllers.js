@@ -172,6 +172,7 @@ angular.module('starter.controllers', [])
         };
     })
     .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
+        $scope.place = null;
         var customerLocation = L.map('customerLocation', {
             center: [
                 [20.0, 5.0]
@@ -185,21 +186,35 @@ angular.module('starter.controllers', [])
             attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
             maxZoom: 25
         }).addTo(customerLocation);
+        var circleRad=0;
         customerLocation.locate({setView: true, maxZoom: 13}).on('locationfound', function (e) {
-            var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)');
-            var circle = L.circle([e.latitude, e.longitude], e.accuracy / 2, {
+            var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)').addTo(customerLocation);
+            circleRad= e.accuracy * 50;
+            var circle =new L.circle([e.latitude, e.longitude], 1500, {
                 weight: 1,
                 color: 'blue',
                 fillColor: '#cacaca',
                 fillOpacity: 0.2
-            });
-            customerLocation.addLayer(marker);
-            customerLocation.addLayer(circle);
+            }).addTo(customerLocation);
         })
             .on('locationerror', function (e) {
                 console.log(e);
                 alert("Location access denied.");
             });
+        $scope.searchLocation = function () {
+            if ($scope.place.geometry) {
+                console.log($scope.place.geometry);
+                customerLocation.setView([$scope.place.geometry.location.lat(), $scope.place.geometry.location.lng()], 15);
+                var marker=L.marker([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()]).addTo(customerLocation);
+                var circle =new L.Circle([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()], 500, {
+                    weight: 1,
+                    color: 'blue',
+                    fillColor: '#cacaca',
+                    fillOpacity: 0.2
+                });
+                circle.addTo(customerLocation);
+            }
+        }
 
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
