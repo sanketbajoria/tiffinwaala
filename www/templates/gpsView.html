@@ -1,6 +1,20 @@
 <ion-view view-title="Map">
     <form class="form place-autocomplete">
-        <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..." ng-change="searchLocation();"/>
+        <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..."
+               ng-change="searchLocation();"/>
+        <div class="dropdown">
+            <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#"
+               href="javascript:void(0)">
+                <div class="input-group">
+                    <input type="text" class="form-control" data-ng-model="order.dateTime">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="order.dateTime"
+                                data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
+            </ul>
+        </div>
     </form>
     <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
 </ion-view>
