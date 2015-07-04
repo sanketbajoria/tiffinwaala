@@ -1,8 +1,6 @@
 <ion-view view-title="Map">
-  <!--  <app-map style="height:100%;margin:12px;box-shadow:0 3px 25px black;"
-             center="basel"
-             zoom="15"
-             markers="whoiswhere">
-    </app-map>-->
+    <form class="form place-autocomplete">
+        <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..." ng-change="searchLocation();"/>
+    </form>
     <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
 </ion-view>
