@@ -1,5 +1,24 @@
 <ion-view view-title="Profile">
     <ion-content>
-        profile
+        <div class="list">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">First Name</span>
+                <input type="text" placeholder="Full Name" ng-model="currentUser.attributes.fullName">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Email</span>
+                <input type="text" placeholder="Email" data-ng-model="currentUser.attributes.email">
+            </label>
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Address</span>
+                <input type="text" placeholder="Address" data-ng-model="currentUser.attributes.address">
+            </label>
+            <li class="item item-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox" data-ng-model="currentUser.attributes.vendor">
+                </label>
+                Vendor
+            </li>
+        </div>
     </ion-content>
 </ion-view>

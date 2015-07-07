@@ -3,7 +3,7 @@
     </ion-nav-bar>
     <ion-nav-view name="content"></ion-nav-view>
 <ion-view title="Login" hide-back-button="true"> <ion-content>
-<form ng-submit="doLogin()">
+<form >
 <p style="color:red" ng-show="errors.msg">{{errors.msg}}</p>
 	<div class="list">
 		<label class="item item-input"> <span class="input-label">Username</span>
@@ -11,7 +11,7 @@
 		</label> <label class="item item-input"> <span class="input-label">Password</span>
 			<input type="password" ng-model="loginData.password">
 		</label> <label class="item">
-			<button class="button button-block button-dark" type="submit">Log
+			<button class="button button-block button-dark" type="submit" ng-click="doLogin()">Log
 				in</button>
 		</label>
 	</div>

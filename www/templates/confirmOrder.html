@@ -1,27 +1,31 @@
 <ion-view view-title="Confirm your order">
     <ion-content>
         <div class="list">
-            <label class="item item-input item-floating-label">
+            <label class="item item-input item-floating-label" >
                 <span class="input-label">First Name</span>
-                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="First Name" ng-disabled=true ng-model="selectedUser.firstName">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Last Name</span>
-                <input type="text" placeholder="Last Name">
+                <input type="text" placeholder="Last Name" ng-disabled=true ng-model="selectedUser.lastname">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Mobile Number</span>
-                <input type="text" placeholder="Mobile Number">
+                <input type="text" placeholder="Mobile Number" ng-disabled=true ng-model="selectedUser.contactNo">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Email</span>
-                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Email" ng-disabled=true ng-model="selectedUser.email">
             </label>
-            Time:
-            Date:
-            Menu:
-            Vendor:
-            <button class="button button-block button-positive">
+            <label class="item item-input item-floating-label">
+                <span class="input-label">Address</span>
+                <input type="text" placeholder="Address" ng-model="selectedUser.address" >
+            </label>
+            Time:{{orderTime|date:date:'yyyy-MM-dd'}}
+            Date:{{orderDate|date:date:'yyyy-MM-dd'}}
+            Menu:{{menu.title}}
+            Vendor:{{vendor.title}}
+            <button class="button button-block button-positive" ng-click="placeOrder()">
                 Confirm order
             </button>
         </div>
