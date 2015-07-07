@@ -215,6 +215,17 @@ angular.module('starter.controllers', [])
                 fillOpacity: 0.2
             }).addTo(customerLocation);
             circle.setRadius(800);
+            var latlng = new google.maps.LatLng(e.latitude, e.longitude);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        $scope.$apply(function () {
+                            $scope.place = results[1];
+                        })
+                    }
+                }
+            });
         })
             .on('locationerror', function (e) {
                 console.log(e);
