@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $location, userSession, $state, $ionicHistory) {
 
     	$ionicHistory.clearHistory();
-    	if(!userSession.isAuthenticated()){
+    	/*if(!userSession.isAuthenticated()){
     		
     		$state.go("login")
     	}else{
@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
     		}else{
     			$location.path("#/app/home");
     		}
-    	}
+    	}*/
     	
     	$scope.go = function ( path ) {
     		  $location.path( path );
@@ -121,7 +121,7 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('VendorCtrl', function ($scope, $stateParams, Vendors) {
+    .controller('VendorCtrl', function ($scope, $stateParams, $location) {
     	var vendors = [
                           {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
                           {id: 1, title: "Zayka Tiffin Service", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
@@ -170,8 +170,11 @@ angular.module('starter.controllers', [])
                 ]
             }
         };
+        $scope.placeOrder =function () {
+            $location.url('app/confirmOrder');
+        }
     })
-    .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors) {
+    .controller('GpsViewCtrl', function ($scope, $stateParams, Vendors,$location) {
         $scope.place = null;
         $scope.order={};
         var customerLocation = L.map('customerLocation', {
@@ -217,15 +220,21 @@ angular.module('starter.controllers', [])
             }
         }
 
+        $scope.showVendorList =function () {
+            $location.url('app/vendors/jaipur');
+        }
+
     }).controller('RegOptionsCtrl', function ($scope, $stateParams){
 
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
         $scope.selectedCity='jaipur';
         $scope.find=function (city){
-            debugger
             $location.url('app/vendors/'+city);
         }
+    })
+    .controller('confirmOrderCtrl', function ($scope, $stateParams){
+
     })
     .factory('userSession', function () {
     	this.isAuthenticated = function(){
