@@ -229,8 +229,8 @@ angular.module('starter.controllers', [])
     })
     .controller('homePageCtrl', function ($scope, $location, $ionicHistory) {
         $scope.selectedCity='jaipur';
-        $scope.find=function (city){
-            $location.url('app/vendors/'+city);
+        $scope.login=function (){
+            $location.url('login');
         }
     })
     .controller('confirmOrderCtrl', function ($scope, $stateParams){
