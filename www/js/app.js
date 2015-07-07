@@ -102,6 +102,15 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                         controller: 'RegOptionsCtrl'
                     }
                 }
+            })
+            .state('app.confirmOrder', {
+                url: "/confirmOrder",
+                views: {
+                    'content': {
+                        templateUrl: "templates/confirmOrder.html",
+                        controller: 'confirmOrderCtrl'
+                    }
+                }
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');

@@ -1,15 +1,13 @@
-<ion-view view-title="Tiffin wale">
+<ion-view view-title="Select Tiffen wala">
     <ion-content>
         <ion-list>
             <div class="list">
                 <a class="item item-avatar" collection-repeat="vendor in vendors" href="#/app/vendor/{{vendor.id}}">
-                    <img ng-src="img/home.jpeg" style="width: 50px;">
-
                     <h2>{{vendor.title}}</h2>
-
+                    <p class="pull-right">Rs 60<p>
                     <p>{{vendor.description}}</p>
                     <span class="icon ion-ios-telephone-outline" ng-click="callMe(vendor,$event)">&nbsp;{{vendor.tel}}</span>
-                    <span class="icon ion-ios-location-outline col-offset-10" ng-click="locateMe(vendor,$event)"></span>
+                    <p class="pull-right">Veg</p>
                 </a>
             </div>
         </ion-list>
