@@ -427,4 +427,5 @@ a.ReadMore:hover{text-decoration:underline;}
     position: fixed;
     bottom: 30px;
     left: 1%;
+    width: 100%;
 }
