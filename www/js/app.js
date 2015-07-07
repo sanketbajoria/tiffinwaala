@@ -103,6 +103,15 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                     }
                 }
             })
+            .state('app.profile', {
+                url: "/profile",
+                views: {
+                    'content': {
+                        templateUrl: "templates/profile.html",
+                        controller: 'ProfileCtrl'
+                    }
+                }
+            })
             .state('app.confirmOrder', {
                 url: "/confirmOrder",
                 views: {
