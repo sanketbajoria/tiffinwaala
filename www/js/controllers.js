@@ -22,7 +22,11 @@ angular.module('starter.controllers', [])
     		Parse.User.logOut();
     		userSession.invalidate();
     		$state.go('login');
-    	}
+    	};
+        $scope.profile = function(){
+            $state.go('app.profile');
+        }
+
 
     })
     
@@ -234,6 +238,9 @@ angular.module('starter.controllers', [])
         }
     })
     .controller('confirmOrderCtrl', function ($scope, $stateParams){
+
+    })
+    .controller('ProfileCtrl', function ($scope, $stateParams){
 
     })
     .factory('userSession', function () {
