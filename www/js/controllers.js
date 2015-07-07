@@ -39,8 +39,15 @@ angular.module('starter.controllers', [])
         $scope.doLogin = function () {
         	Parse.User.logIn($scope.loginData.username, $scope.loginData.password, {
         		  success: function(user) {
-        			  userSession.create(user);
-        	          $state.go('app.home');
+                      if(!user.get('vendor')){
+                          //user
+                          userSession.create(user);
+                          $state.go('app.gpsView');
+                      }
+                      else{
+                          //user is vendor
+                          $state.go('app.profile');
+                      }
         		  },
         		  error: function(user, error) {
         		    $scope.errors.msg="Invalid user or password";
@@ -60,6 +67,7 @@ angular.module('starter.controllers', [])
             user.set("username", $scope.user.username);
             user.set("password", $scope.user.password);
             user.set("fullName", $scope.user.fullName);
+            user.set("emailVerified",true);
             user.set("contactNo", $scope.user.contactNo);
             user.set("address", $scope.user.address);
 
@@ -241,7 +249,7 @@ angular.module('starter.controllers', [])
 
     })
     .controller('ProfileCtrl', function ($scope, $stateParams){
-
+        $scope.currentUser = Parse.User.current();
     })
     .factory('userSession', function () {
     	this.isAuthenticated = function(){
