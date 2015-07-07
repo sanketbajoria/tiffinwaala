@@ -195,32 +195,44 @@ angular.module('starter.controllers', [])
             maxZoom: 25
         }).addTo(customerLocation);
         var circleRad=0;
+        var marker={};
+        var circle={};
         customerLocation.locate({setView: true, maxZoom: 13}).on('locationfound', function (e) {
-            var marker = L.marker([e.latitude, e.longitude]).bindPopup('Your are here :)').addTo(customerLocation);
-            circleRad= e.accuracy * 50;
-            var circle =new L.circle([e.latitude, e.longitude], 1500, {
+            marker = L.marker([e.latitude, e.longitude],{draggable: true}).bindPopup('Your are here :)').addTo(customerLocation);
+            marker.on('drag', onDragging);
+            circle=L.circle([e.latitude, e.longitude],e.accuracy/2, {
                 weight: 1,
                 color: 'blue',
                 fillColor: '#cacaca',
                 fillOpacity: 0.2
             }).addTo(customerLocation);
+            circle.setRadius(800);
         })
             .on('locationerror', function (e) {
                 console.log(e);
                 alert("Location access denied.");
             });
+        function onDragging(e) {
+           var latlng = new google.maps.LatLng(e.target.getLatLng().lat, e.target.getLatLng().lng);
+            var geocoder = geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        $scope.$apply(function () {
+                            $scope.place = results[1];
+                        })
+                    }
+                }
+            });
+            circle.setLatLng(e.target.getLatLng());
+        }
         $scope.searchLocation = function () {
             if ($scope.place.geometry) {
-                console.log($scope.place.geometry);
                 customerLocation.setView([$scope.place.geometry.location.lat(), $scope.place.geometry.location.lng()], 15);
-                var marker=L.marker([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()]).addTo(customerLocation);
-                var circle =new L.Circle([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()], 500, {
-                    weight: 1,
-                    color: 'blue',
-                    fillColor: '#cacaca',
-                    fillOpacity: 0.2
-                });
-                circle.addTo(customerLocation);
+                marker.setLatLng([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()]);
+                marker.on('drag', onDragging);
+                circle.setLatLng([$scope.place.geometry.location.lat(),$scope.place.geometry.location.lng()]);
+                circle.setRadius(200);
             }
         }
 
