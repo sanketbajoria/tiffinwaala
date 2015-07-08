@@ -15,7 +15,7 @@ angular.module('starter.controllers')
     });
     customerLocation.setView([20.0, 5.0], 15);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        attribution: 'Map data ? <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
         maxZoom: 25
     }).addTo(customerLocation);
     var circleRad=0;
@@ -73,9 +73,11 @@ angular.module('starter.controllers')
 
     $scope.showVendorList =function () {
         debugger
-        $localstorage.setObject('address',$scope.place);
-        $localstorage.setObject('dateTime',$scope.order.dateTime);
-        $location.url('app/vendors/jaipur');
+        if(form.$valid) {
+            $localstorage.setObject('address', $scope.place);
+            $localstorage.setObject('dateTime', $scope.order.dateTime);
+            $location.url('app/vendors/jaipur');
+        }
     }
 
 })

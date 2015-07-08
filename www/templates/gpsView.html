@@ -19,7 +19,7 @@
         <div class="order-map-button">
             <div class="row">
                 <div class="button-bar">
-                    <button ng-click="showVendorList()" class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala</button>
+                    <button ng-disabled="orderForm.$invalid" ng-click="showVendorList(orderForm)" class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala</button>
                 </div>
             </div>
         </div>
