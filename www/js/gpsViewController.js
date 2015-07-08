@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-.controller('GpsViewCtrl', function ($scope, $stateParams, Vendors,$location) {
+.controller('GpsViewCtrl', function ($scope, $stateParams, Vendors,$location,$localstorage) {
     $scope.place = null;
     $scope.order={};
     var customerLocation = L.map('customerLocation', {
@@ -72,6 +72,9 @@ angular.module('starter.controllers')
     }
 
     $scope.showVendorList =function () {
+        debugger
+        $localstorage.setObject('address',$scope.place);
+        $localstorage.setObject('dateTime',$scope.order.dateTime);
         $location.url('app/vendors/jaipur');
     }
 
