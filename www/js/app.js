@@ -112,6 +112,15 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                     }
                 }
             })
+            .state('app.accord', {
+                url: "/accord",
+                views: {
+                    'content': {
+                        templateUrl: "templates/listThali.html",
+                        controller: 'MyCtrl'
+                    }
+                }
+            })
             .state('app.confirmOrder', {
                 url: "/confirmOrder",
                 views: {
