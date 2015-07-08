@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-.controller('confirmOrderCtrl', function ($scope, $stateParams){
+.controller('confirmOrderCtrl', function ($scope, $stateParams,userSession){
     $scope.selectedVendor={
         id:'eN467lXt76'
     };
@@ -26,15 +26,14 @@ angular.module('starter.controllers')
     }
 
     $scope.placeOrder = function(){
-
         var Order = Parse.Object.extend('Order');
         var myOrder = new Order();
-        myOrder.set("Location", 45.44334);
+        myOrder.set("Location",  new Parse.GeoPoint(30.0, -20.0));
         myOrder.set("comment", 'NA');
         myOrder.set("preferredDateTime", new Date());
         myOrder.set("tiffins", 1);
-        myOrder.set("userId", '1');
-        myOrder.set("vendorId", '1');
+        myOrder.set("userId", userSession.user);
+        myOrder.set("vendorId", userSession.user);
         myOrder.save();
     }
 })
