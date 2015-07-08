@@ -2,14 +2,35 @@
     <ion-content>
         <ion-list>
             <div class="list">
-                <a class="item item-avatar" collection-repeat="vendor in vendors" href="#/app/vendor/{{vendor.id}}">
-                    <h2>{{vendor.title}}</h2>
-                    <p class="pull-right">Rs 60<p>
-                    <p>{{vendor.description}}</p>
-                    <span class="icon ion-ios-telephone-outline" ng-click="callMe(vendor,$event)">&nbsp;{{vendor.tel}}</span>
-                    <p class="pull-right">Veg</p>
+                <a  class="item item-avatar" collection-repeat="schedule in schedules" href="#/app/vendor/{{schedule.attributes.vendorId.attributes.id}}">
+                    <h2>{{schedule.attributes.foodDescription}}</h2>
+                    <p>{{schedule.attributes.address}}</p>
+                    <p class="pull-right">{{schedule.attributes.price}}<p>
+                    <span class="icon ion-ios-telephone-outline" ng-click="callMe(vendor,$event)">&nbsp;{{schedule.attributes.vendorId.attributes.fullName}}, {{schedule.attributes.vendorId.attributes.contactNo}}</span>
+                    <p class="pull-right">{{schedule.attributes.vendorId.attributes.foodType}}</p>
                 </a>
             </div>
         </ion-list>
     </ion-content>
 </ion-view>
+<!--
+username:,
+address:,
+contactNo:,
+email:,
+foodType:,
+fullName:,
+location:,
+pic:,
+region:,
+vendor:
+------------------------
+
+foodDescription
+orderCutOffTime
+orderDate
+price
+title
+vendorId
+
+-->

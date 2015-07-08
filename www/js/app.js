@@ -74,7 +74,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                 views: {
                     'content': {
                         templateUrl: "templates/vendors.html",
-                        controller: 'VendorsCtrl'
+                        controller: 'VendorListByScheduleCtrl'
                     }
                 }
             })
