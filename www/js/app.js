@@ -255,6 +255,4 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
 
         } // end of link:
     }; // end of return
-})
-
-angular.module('starter.controllers',[]);
+});

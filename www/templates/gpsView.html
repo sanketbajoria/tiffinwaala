@@ -1,4 +1,5 @@
-<ion-view view-title="Map">
+<ion-view view-title="Select date and time">
+    <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
     <form class="form place-autocomplete">
         <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..."
                ng-change="searchLocation();"/>
@@ -15,13 +16,24 @@
                                 data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
             </ul>
         </div>
-    </form>
-    <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
-    <div class="order-map-button">
-        <div class="row">
-            <div class="button-bar">
-                <button ng-click="showVendorList()" class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala</button>
+        <div class="order-map-button">
+            <li class="item item-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox">
+                </label>
+                Flux Capacitor
+            </li>
+            <li class="item item-checkbox">
+                <label class="checkbox">
+                    <input type="checkbox">
+                </label>
+                Flux Capacitor
+            </li>
+            <div class="row">
+                <div class="button-bar">
+                    <button ng-click="showVendorList()" class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </ion-view>
