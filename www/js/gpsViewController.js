@@ -71,8 +71,7 @@ angular.module('starter.controllers')
         }
     }
 
-    $scope.showVendorList =function () {
-        debugger
+    $scope.showVendorList =function (form) {
         if(form.$valid) {
             $localstorage.setObject('address', $scope.place);
             $localstorage.setObject('dateTime', $scope.order.dateTime);
