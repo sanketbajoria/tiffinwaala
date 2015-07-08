@@ -1,25 +1,36 @@
 <ion-view view-title="Select date and time">
     <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
     <form class="form place-autocomplete" novalidate name="orderForm">
-        <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..."
-               ng-change="searchLocation();" required name="location"/>
-        <div class="dropdown">
-            <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#"
-               href="javascript:void(0)">
-                <div class="input-group">
-                    <input type="text" class="form-control" data-ng-model="order.dateTime" required name="dateTime">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+        <div class="row">
+            <div class="button-bar">
+                <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..."
+                       ng-change="searchLocation();" required name="location" style="margin-left:20px; margin-right: 10px;margin-bottom: 10px"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="button-bar">
+                <div class="dropdown" style="margin-left:20px; margin-right: 10px;margin-bottom: 10px">
+                    <a class="dropdown-toggle" id="dropdown1" role="button" data-toggle="dropdown" data-target="#"
+                       href="javascript:void(0)">
+                        <div class="input-group">
+                            <input type="text" class="form-control" data-ng-model="order.dateTime" required
+                                   name="dateTime">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="order.dateTime"
+                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
+                    </ul>
                 </div>
-            </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <datetimepicker data-ng-model="order.dateTime"
-                                data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
-            </ul>
+            </div>
         </div>
         <div class="order-map-button">
-             <div class="row">
+            <div class="row">
                 <div class="button-bar">
-                    <button ng-disabled="orderForm.$invalid" ng-click="showVendorList(orderForm)" class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala</button>
+                    <button ng-disabled="orderForm.$invalid" ng-click="showVendorList(orderForm)"
+                            class="button button-positive" style="margin-left:20px; margin-right: 10px">Order Dabawala
+                    </button>
                 </div>
             </div>
         </div>
