@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-.controller('VendorListByScheduleCtrl', function ($scope, Vendors, $location, $state) {
+.controller('VendorListByScheduleCtrl', function ($scope, Vendors, $location, $state, $localStorage) {
         $scope.schedules=[];
         var query = new Parse.Query("Schedule");
         //query.equalTo("vendor", true);
@@ -25,9 +25,16 @@ angular.module('starter.controllers')
             } else {
                 $scope.shownGroup = group;
             }
-        };
+        }
+
         $scope.isGroupShown = function(group) {
             return $scope.shownGroup === group;
+        }
+
+        $scope.placeOrder =function (schedule) {
+            console.log(schedule);
+            $localStorage.setObject('schedule',schedule);
+            $state.go('app.confirmOrder');
         };
 
         /*$scope.vendors = [
