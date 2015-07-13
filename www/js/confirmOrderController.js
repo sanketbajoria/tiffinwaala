@@ -12,14 +12,17 @@ angular.module('starter.controllers')
         $scope.dateTime=$localStorage.getObject('dateTime');
 
     $scope.placeOrder = function(){
+        $localStorage.getObject('schedule')
+        debugger
         var Order = Parse.Object.extend('Order');
         var myOrder = new Order();
-        myOrder.set("Location",  new Parse.GeoPoint(30.0, -20.0));
+        myOrder.set("scheduleId", $localStorage.getObject('schedule'));
+        myOrder.set("Location",  new Parse.GeoPoint($scope.address.geometry.location.A, $scope.address.geometry.location.F));
         myOrder.set("comment", 'NA');
-        myOrder.set("preferredDateTime", new Date());
+        myOrder.set("preferredDateTime", new Date($localStorage.getObject('dateTime')));
         myOrder.set("tiffins", 1);
         myOrder.set("userId", userSession.user);
-        myOrder.set("vendorId", userSession.user);
+        myOrder.set("vendorId", $localStorage.getObject('schedule').vendorId);
         myOrder.save();
     }
 })

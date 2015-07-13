@@ -4,6 +4,7 @@
 angular.module('starter.controllers')
 .controller('VendorListByScheduleCtrl', function ($scope, Vendors, $location, $state, $localStorage) {
         $scope.schedules=[];
+        $scope.orderList=[];
         var query = new Parse.Query("Schedule");
         //query.equalTo("vendor", true);
         query.include("vendorId");
@@ -36,6 +37,33 @@ angular.module('starter.controllers')
             $localStorage.setObject('schedule',schedule);
             $state.go('app.confirmOrder');
         };
+
+        $scope.addOrRemoveToList = function(schedule){
+
+            var isExist = removeFunction(schedule.id);
+            console.log('isExist: ',isExist);
+            if(!isExist) {
+                $scope.orderList.push(schedule);
+            }
+            console.log('orderList',$scope.orderList);
+        }
+
+        function removeFunction (val)
+        {
+            debugger
+            var isExist = false;
+            var index = 0;
+            for(var index = 0 ; index< $scope.orderList.length ; index++ ){
+                if($scope.orderList[index].id === val){
+                    $scope.orderList.splice(index, 1);
+                    isExist =true;
+                    break;
+                }
+            }
+
+
+            return isExist;
+        }
 
         /*$scope.vendors = [
             {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},

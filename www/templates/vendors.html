@@ -19,6 +19,8 @@
             <div ng-repeat="schedule in schedules">
                 <ion-item class="item-stable"
                           ng-click="toggleGroup(schedule)"
+                          on-hold="addOrRemoveToList(schedule)"
+                          on-swipe-right="placeOrder(schedule)"
                           ng-class="{active: isGroupShown(schedule)}">
                     <i class="icon" ng-class="isGroupShown(schedule) ? 'ion-minus' : 'ion-plus'"></i>
                     &nbsp;{{schedule.attributes.title}}
