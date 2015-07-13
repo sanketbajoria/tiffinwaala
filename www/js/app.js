@@ -88,7 +88,6 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                 }
             }).state('app.gpsView', {
                 url: "/gpsView/:id",
-                cache: false,
                 views: {
                     'content': {
                         templateUrl: "templates/gpsView.html",
