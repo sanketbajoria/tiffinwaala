@@ -11,13 +11,27 @@ angular.module('starter.controllers')
         ],
         scrollWheelZoom: false,
         inertia: true,
+        zoomControl:false,
         inertiaDeceleration: 2000
     });
+        $scope.zoomIn = function () {
+            if (customerLocation) {
+                customerLocation.zoomIn()
+            }
+        };
+
+        $scope.zoomOut = function () {
+            if (customerLocation) {
+                customerLocation.zoomOut()
+            }
+        };
     customerLocation.setView([20.0, 5.0], 15);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        var layer =new L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: 'Map data ? <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-        maxZoom: 25
-    }).addTo(customerLocation);
+        maxZoom: 25,
+        maxNativeZoom: 18
+    });
+    customerLocation.addLayer(layer);
     var circleRad=0;
     var marker={};
     var circle={};
