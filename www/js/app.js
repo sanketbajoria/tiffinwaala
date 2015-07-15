@@ -22,6 +22,30 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
+            .state('vendor', {
+                url: "/vendor",
+                abstract: true,
+                templateUrl: "templates/menu.html",
+                controller: 'AppCtrl'
+            })
+            .state('vendor.schedules', {
+                url: "/vendor/schedules",
+                views: {
+                    'content': {
+                        templateUrl: "templates/vendor/schedules.html",
+                        controller: 'schedulesCtrl'
+                    }
+                }
+            })
+            .state('vendor.schedule', {
+                url: "/vendor/schedule",
+                views: {
+                    'content': {
+                        templateUrl: "templates/vendor/schedule.html",
+                        controller: 'scheduleCtrl'
+                    }
+                }
+            })
 
             .state('app', {
                 url: "/app",
@@ -74,7 +98,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                 views: {
                     'content': {
                         templateUrl: "templates/vendors.html",
-                        controller: 'VendorsCtrl'
+                        controller: 'VendorListByScheduleCtrl'
                     }
                 }
             })
@@ -109,6 +133,15 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                     'content': {
                         templateUrl: "templates/profile.html",
                         controller: 'ProfileCtrl'
+                    }
+                }
+            })
+            .state('app.accord', {
+                url: "/accord",
+                views: {
+                    'content': {
+                        templateUrl: "templates/listThali.html",
+                        controller: 'MyCtrl'
                     }
                 }
             })

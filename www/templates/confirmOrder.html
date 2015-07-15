@@ -3,28 +3,25 @@
         <div class="list">
             <label class="item item-input item-floating-label" >
                 <span class="input-label">First Name</span>
-                <input type="text" placeholder="First Name" ng-disabled=true ng-model="selectedUser.firstName">
+                <input type="text" placeholder="Name" ng-disabled=true ng-model="user.attributes.fullName">
             </label>
-            <label class="item item-input item-floating-label">
-                <span class="input-label">Last Name</span>
-                <input type="text" placeholder="Last Name" ng-disabled=true ng-model="selectedUser.lastname">
-            </label>
+
             <label class="item item-input item-floating-label">
                 <span class="input-label">Mobile Number</span>
-                <input type="text" placeholder="Mobile Number" ng-disabled=true ng-model="selectedUser.contactNo">
+                <input type="text" placeholder="Mobile Number" ng-disabled=true ng-model="user.attributes.contactNo">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Email</span>
-                <input type="text" placeholder="Email" ng-disabled=true ng-model="selectedUser.email">
+                <input type="text" placeholder="Email" ng-disabled=true ng-model="user.attributes.email">
             </label>
             <label class="item item-input item-floating-label">
                 <span class="input-label">Address</span>
-                <input type="text" placeholder="Address" ng-model="selectedUser.address" >
+                <input type="text" placeholder="Address" ng-model="user.attributes.address" >
             </label>
-            Time:{{orderTime|date:date:'yyyy-MM-dd'}}
-            Date:{{orderDate|date:date:'yyyy-MM-dd'}}
-            Menu:{{menu.title}}
-            Vendor:{{vendor.title}}
+            <p>Order Time:{{dateTime|date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
+            <p>Delivery Address:{{address.formatted_address}}</p>
+            <p>Menu:{{schedule.foodDescription}}</p>
+            <p>Vendor:{{schedule.vendorId.objectId}}</p>
             <button class="button button-block button-positive" ng-click="placeOrder()">
                 Confirm order
             </button>

@@ -2,19 +2,81 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-.controller('VendorsCtrl', function ($scope, Vendors, $location, $state) {
-    $scope.vendors = [
-        {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
-        {id: 1, title: "Zayka Tiffin Service", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
-        {id: 2, title: "Sabka Tiffin", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
-        {id: 3, title: "Satva Foods", name: "Brett Rudd", twitter_id: "@brettrudd", description: "description",tel:'+(91)-22-38559670'},
-        {id: 4, title: "KGN Caterers", name: "Joe Bowser", twitter_id: "@infil00p", description: "description",tel:'+(91)-22-38559670'},
-        {id: 5, title: "Dipaanjali Tiffin Service", name: "Brian Leroux", twitter_id: "@brianleroux", description: "description",tel:'+(91)-22-38559670'},
-        {id: 6, title: "Ganapatti Thali", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
-        {id: 7, title: "DRS Kitchen", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
-        {id: 8, title: "Food Connect ", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
-        {id: 9, title: "Mauli Tiffin Service", name: "Jason Weathersby", twitter_id: "@jasonweathersby", description: "description",tel:'+(91)-22-38559670'},
-    ];
+.controller('VendorListByScheduleCtrl', function ($scope, Vendors, $location, $state, $localStorage) {
+        $scope.schedules=[];
+        $scope.orderList=[];
+        var query = new Parse.Query("Schedule");
+        //query.equalTo("vendor", true);
+        query.include("vendorId");
+        query.find({
+            success: function(schedules) {
+                $scope.schedules=schedules;
+            },
+
+            error: function(error) {
+                // error is an instance of Parse.Error.
+            }
+        });
+        console.log($scope.vendors);
+
+
+        $scope.toggleGroup = function(group) {
+            if ($scope.isGroupShown(group)) {
+                $scope.shownGroup = null;
+            } else {
+                $scope.shownGroup = group;
+            }
+        }
+
+        $scope.isGroupShown = function(group) {
+            return $scope.shownGroup === group;
+        }
+
+        $scope.placeOrder =function (schedule) {
+            console.log(schedule);
+            $localStorage.setObject('schedule',schedule);
+            $state.go('app.confirmOrder');
+        };
+
+        $scope.addOrRemoveToList = function(schedule){
+
+            var isExist = removeFunction(schedule.id);
+            console.log('isExist: ',isExist);
+            if(!isExist) {
+                $scope.orderList.push(schedule);
+            }
+            console.log('orderList',$scope.orderList);
+        }
+
+        function removeFunction (val)
+        {
+            debugger
+            var isExist = false;
+            var index = 0;
+            for(var index = 0 ; index< $scope.orderList.length ; index++ ){
+                if($scope.orderList[index].id === val){
+                    $scope.orderList.splice(index, 1);
+                    isExist =true;
+                    break;
+                }
+            }
+
+
+            return isExist;
+        }
+
+        /*$scope.vendors = [
+            {id: 0, title: "Vegsutra Hospitality Pvt Ltd", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+            {id: 1, title: "Zayka Tiffin Service", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+            {id: 2, title: "Sabka Tiffin", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+            {id: 3, title: "Satva Foods", name: "Brett Rudd", twitter_id: "@brettrudd", description: "description",tel:'+(91)-22-38559670'},
+            {id: 4, title: "KGN Caterers", name: "Joe Bowser", twitter_id: "@infil00p", description: "description",tel:'+(91)-22-38559670'},
+            {id: 5, title: "Dipaanjali Tiffin Service", name: "Brian Leroux", twitter_id: "@brianleroux", description: "description",tel:'+(91)-22-38559670'},
+            {id: 6, title: "Ganapatti Thali", name: "Holly Schinsky", twitter_id: "@devgirlfl", description: "description",tel:'+(91)-22-38559670'},
+            {id: 7, title: "DRS Kitchen", name: "Michael Brooks", twitter_id: "@mwbrooks", description: "description",tel:'+(91)-22-38559670'},
+            {id: 8, title: "Food Connect ", name: "Christophe Coenraets", twitter_id: "@ccoenraets", description: "description",tel:'+(91)-22-38559670'},
+            {id: 9, title: "Mauli Tiffin Service", name: "Jason Weathersby", twitter_id: "@jasonweathersby", description: "description",tel:'+(91)-22-38559670'},
+        ];*/
     $scope.callMe = function (vender, event) {
         event.preventDefault();
         window.location = 'tel:' + vender.tel;

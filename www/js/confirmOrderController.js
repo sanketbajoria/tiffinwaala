@@ -2,38 +2,27 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-.controller('confirmOrderCtrl', function ($scope, $stateParams,userSession){
+.controller('confirmOrderCtrl', function ($scope, $stateParams, userSession, $localStorage){
     $scope.selectedVendor={
         id:'eN467lXt76'
     };
-
-    $scope.currentUser = Parse.User.current();
-    $scope.selectedUser = {
-        id:'UcNI0gG0JV',
-        firstName:'saurabh',
-        lastName:'Sharma',
-        contactNo:'9602273529',
-        email:'saurabh.find@gmail.com',
-        address:'108,shiv nagar murlipura scheem'
-    }
-    $scope.orderTime = new Date();
-    $scope.orderDate = new Date();
-    $scope.menu = {
-        title:'veg'
-    }
-    $scope.vendor = {
-        title:'Rama Dabbawala'
-    }
+        $scope.user=userSession.user;
+        $scope.schedule = $localStorage.getObject('schedule');
+        $scope.address=$localStorage.getObject('address');
+        $scope.dateTime=$localStorage.getObject('dateTime');
 
     $scope.placeOrder = function(){
+        $localStorage.getObject('schedule')
+        debugger
         var Order = Parse.Object.extend('Order');
         var myOrder = new Order();
-        myOrder.set("Location",  new Parse.GeoPoint(30.0, -20.0));
+        myOrder.set("scheduleId", $localStorage.getObject('schedule'));
+        myOrder.set("Location",  new Parse.GeoPoint($scope.address.geometry.location.A, $scope.address.geometry.location.F));
         myOrder.set("comment", 'NA');
-        myOrder.set("preferredDateTime", new Date());
+        myOrder.set("preferredDateTime", new Date($localStorage.getObject('dateTime')));
         myOrder.set("tiffins", 1);
         myOrder.set("userId", userSession.user);
-        myOrder.set("vendorId", userSession.user);
+        myOrder.set("vendorId", $localStorage.getObject('schedule').vendorId);
         myOrder.save();
     }
 })

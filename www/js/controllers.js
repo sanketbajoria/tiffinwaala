@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $location, userSession, $state, $ionicHistory) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $location, userSession, $state, $stateParams, $ionicHistory) {
 
     	$ionicHistory.clearHistory();
     	/*if(!userSession.isAuthenticated()){
