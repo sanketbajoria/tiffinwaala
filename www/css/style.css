@@ -450,3 +450,9 @@ body {
 .list .item.item-accordion.ng-hide-remove {
     display: block !important;
 }
+.item.item-stable.item-venders{
+    background-color: #ffffff;
+}
+.item.item-stable.item-venders.active{
+    background-color: #e5e5e5;
+}
