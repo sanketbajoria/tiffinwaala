@@ -27,10 +27,8 @@
                     <div style="padding-left: 20px">
                         <p class="pull-right">{{schedule.attributes.price | currency:"INR ":0}}<p>
                         <p>{{schedule.attributes.vendorId.attributes.fullName}}</p>
-                        <p>{{schedule.attributes.vendorId.attributes.address}}
-                        <span class="icon ion-ios-telephone-outline pull-right" ng-click="callMe(vendor,$event)">
-                             {{schedule.attributes.vendorId.attributes.contactNo}}
-                        </span>
+                        <p style="float: left;">{{schedule.attributes.vendorId.attributes.address}}
+                        <p star-rating max="5" rating-value="2" on-rating-selected="" class="pull-right"></p>
                         </p>
                     </div>
                 </ion-item>
