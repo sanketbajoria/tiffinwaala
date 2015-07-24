@@ -32,8 +32,8 @@ angular.module('starter.controllers')
             return $scope.shownGroup === group;
         }
 
-        $scope.placeOrder =function (schedule) {
-            console.log(schedule);
+        $scope.placeOrder =function (e,schedule) {
+            e.stopPropagation();
             $localStorage.setObject('schedule',schedule);
             $state.go('app.confirmOrder');
         };
