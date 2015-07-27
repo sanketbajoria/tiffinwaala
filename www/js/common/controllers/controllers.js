@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('TiffenWala.controllers', [])
 
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $location, userSession, $state, $stateParams, $ionicHistory) {
 

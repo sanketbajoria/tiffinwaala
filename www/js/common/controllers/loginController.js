@@ -1,7 +1,7 @@
 /**
  * Created by saurabhsharma01 on 08-Jul-15.
  */
-angular.module('starter.controllers')
+angular.module('TiffenWala.controllers')
 .controller('LoginCtrl', function ($scope, $state, userSession, $ionicHistory) {
     // Form data for the login modal
     $ionicHistory.clearHistory();

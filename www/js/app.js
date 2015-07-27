@@ -1,10 +1,10 @@
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'TiffenWala' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','google.places','ui.bootstrap.datetimepicker','ionic.utils', 'ionic-timepicker', 'ionic-datepicker','ngResource'])
+// 'TiffenWala.controllers' is found in controllers.js
+angular.module('TiffenWala', ['ionic', 'TiffenWala.controllers','google.places','ui.bootstrap.datetimepicker','ionic.utils', 'ionic-timepicker', 'ionic-datepicker'])
     .constant('SERVER_PATH', 'http://localhost:3000')
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -166,8 +166,6 @@ angular.module('starter', ['ionic', 'starter.controllers','google.places','ui.bo
             });
         // if none of the above states are matched, use this as the fallback
         $urlRouterProvider.otherwise('/app/home');
-    }).factory('Vendors', function ($resource,SERVER_PATH) {
-        return $resource(SERVER_PATH + '/api/vendors/:id');
     }).directive("appMap", function ($window) {
     return {
         restrict: "E",

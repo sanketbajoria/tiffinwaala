@@ -1,7 +1,7 @@
 /**
  * Created by saurabhsharma01 on 08-Jul-15.
  */
-angular.module('starter.controllers')
+angular.module('TiffenWala.controllers')
 .controller('confirmOrderCtrl', function ($scope, $stateParams, userSession, $localStorage){
     $scope.selectedVendor={
         id:'eN467lXt76'

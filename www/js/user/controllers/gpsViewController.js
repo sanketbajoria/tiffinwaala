@@ -1,8 +1,8 @@
 /**
  * Created by saurabhsharma01 on 08-Jul-15.
  */
-angular.module('starter.controllers')
-.controller('GpsViewCtrl', function ($scope, $stateParams, Vendors,$location,$localStorage) {
+angular.module('TiffenWala.controllers')
+.controller('GpsViewCtrl', function ($scope, $stateParams,$location,$localStorage) {
     $scope.place = null;
     $scope.order={};
     var customerLocation = L.map('customerLocation', {

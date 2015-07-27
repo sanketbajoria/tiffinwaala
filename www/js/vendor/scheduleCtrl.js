@@ -1,7 +1,7 @@
 /**
  * Created by saurabhsharma01 on 08-Jul-15.
  */
-angular.module('starter.controllers')
+angular.module('TiffenWala.controllers')
     .controller('scheduleCtrl', function ($scope, $location, $ionicHistory, userSession, $stateParams, $state, $appUtil, DATE_PICKER, TIME_PICKER) {
 
         var Schedule = Parse.Object.extend("Schedule");
