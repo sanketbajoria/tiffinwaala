@@ -32,8 +32,8 @@ angular.module('starter.controllers')
             return $scope.shownGroup === group;
         }
 
-        $scope.placeOrder =function (schedule) {
-            console.log(schedule);
+        $scope.placeOrder =function (e,schedule) {
+            e.stopPropagation();
             $localStorage.setObject('schedule',schedule);
             $state.go('app.confirmOrder');
         };
@@ -138,5 +138,44 @@ angular.module('starter.controllers')
     };
     $scope.placeOrder =function () {
         $location.url('app/confirmOrder');
-    }
-})
+    };
+    $scope.rating1=5;
+}).directive("starRating", function() {
+        return {
+            restrict: 'A',
+            template: '<ul class="rating">' +
+                '<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">' +
+                '\u2605' +
+                '</li>' +
+                '</ul>',
+            scope: {
+                ratingValue: '=',
+                max: '=',
+                onRatingSelected: '&'
+            },
+            link: function (scope, elem, attrs) {
+
+                var updateStars = function () {
+                    scope.stars = [];
+                    for (var i = 0; i < scope.max; i++) {
+                        scope.stars.push({
+                            filled: i < scope.ratingValue
+                        });
+                    }
+                };
+
+                scope.toggle = function (index) {
+                    scope.ratingValue = index + 1;
+                    scope.onRatingSelected({
+                        rating: index + 1
+                    });
+                };
+
+                scope.$watch('ratingValue', function (oldVal, newVal) {
+                    if (newVal) {
+                        updateStars();
+                    }
+                });
+            }
+        }
+    });

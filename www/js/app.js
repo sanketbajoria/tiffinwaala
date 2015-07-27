@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.places','ui.bootstrap.datetimepicker','ionic.utils'])
+angular.module('starter', ['ionic', 'starter.controllers','google.places','ui.bootstrap.datetimepicker','ionic.utils', 'ionic-timepicker', 'ionic-datepicker'])
     .constant('SERVER_PATH', 'http://localhost:3000')
     .run(function ($ionicPlatform) {
         $ionicPlatform.ready(function () {
@@ -29,7 +29,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                 controller: 'AppCtrl'
             })
             .state('vendor.schedules', {
-                url: "/vendor/schedules",
+                url: "/schedules",
                 views: {
                     'content': {
                         templateUrl: "templates/vendor/schedules.html",
@@ -38,7 +38,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                 }
             })
             .state('vendor.schedule', {
-                url: "/vendor/schedule",
+                url: "/schedule",
                 views: {
                     'content': {
                         templateUrl: "templates/vendor/schedule.html",
@@ -46,7 +46,15 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                     }
                 }
             })
-
+            .state('vendor.scheduleId', {
+                url: "/schedule/:scheduleId",
+                views: {
+                    'content': {
+                        templateUrl: "templates/vendor/schedule.html",
+                        controller: 'scheduleCtrl'
+                    }
+                }
+            })
             .state('app', {
                 url: "/app",
                 abstract: true,
@@ -96,7 +104,7 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
             .state('app.vendors', {
                 url: "/vendors/:city",
                 views: {
-                    'content': {
+                    '/content': {
                         templateUrl: "templates/vendors.html",
                         controller: 'VendorListByScheduleCtrl'
                     }
@@ -110,7 +118,8 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                         controller: 'VendorCtrl'
                     }
                 }
-            }).state('app.gpsView', {
+            })
+            .state('app.gpsView', {
                 url: "/gpsView/:id",
                 views: {
                     'content': {
@@ -118,7 +127,8 @@ angular.module('starter', ['ngResource', 'ionic', 'starter.controllers','google.
                         controller: 'GpsViewCtrl'
                     }
                 }
-            }).state('app.regOptions', {
+            })
+            .state('app.regOptions', {
                 url: "/regOptions",
                 views: {
                     'content': {

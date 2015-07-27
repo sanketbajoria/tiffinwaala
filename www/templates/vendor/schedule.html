@@ -1,21 +1,45 @@
-<ion-view title="Create new schedule"> <ion-content>
-    <form ng-submit="submit()">
-        <div class="list">
-            <label class="item item-input item-stacked-label"> <span
-                    class="input-label">Title</span> <input type="text"
-                                                            ng-model="schedule.title" placeholder="Chotta Plate">
-            </label> <label class="item item-input item-stacked-label"> <span
-                class="input-label">Description</span> <textarea
-                ng-model="schedule.foodDescription" placeholder="Roti, Dal, sabzi"></textarea>
-        </label> <label class="item item-input item-stacked-label"> <span
-                class="input-label">CutOff Time</span>  <datetimepicker data-ng-model="schedule.orderCutOffTime"
-                                                                        data-datetimepicker-config="{ dropdownSelector: '#dropdown1' }"></datetimepicker>
+<ion-view title="Create new schedule">
+    <ion-content>
+        <form>
+            <div class="list">
+                <label class="item item-input item-stacked-label"> <span
+                        class="input-label">Title</span> <input type="text"
+                                                                ng-model="schedule.title" placeholder="Chotta Plate" />
+                </label> <label class="item item-input item-stacked-label"> <span
+                    class="input-label">Description</span> <textarea
+                    ng-model="schedule.foodDescription" placeholder="Roti, Dal, sabzi"></textarea>
+            </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Price</span>
+                    <input type="number"
+                           ng-model="schedule.price" placeholder="35.0" />
 
-        </label>  <label class="item">
-            <button class="button button-block button-dark" type="submit">Create
-            </button>
-        </label>
-        </div>
+                </label>
 
-    </form>
-</ion-content> </ion-view>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Order Date</span>
+                    <ionic-datepicker idate="schedule.orderDate" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback" title="title">
+                        <button class="button button-positive"> {{ schedule.orderDate | date:'dd - MMMM - yyyy' }} </button>
+                    </ionic-datepicker>
+
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">CutOff Time</span>
+                    <ionic-timepicker etime="schedule.orderCutOffTime" format="slots.format" step="slots.step" callback="timePickerCallback">
+                        <button class="button button-positive"> {{epochTime() | date: 'shortTime'}} </button>
+                    </ionic-timepicker>
+                </label>
+                <label class="item">
+                <button class="button button-block button-dark" type="button" ng-click="create()">Create
+                </button>
+                <label class="item">
+                    <button class="button button-block button-dark" type="button" ng-click="createNext()">Create Next
+                    </button>
+                </label>
+            </div>
+
+        </form>
+    </ion-content>
+</ion-view>

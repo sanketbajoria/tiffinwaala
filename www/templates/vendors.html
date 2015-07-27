@@ -17,34 +17,29 @@
     <ion-content class="has-header">
         <ion-list>
             <div ng-repeat="schedule in schedules">
-                <ion-item class="item-stable"
+                <ion-item class="item-stable item-venders"
                           ng-click="toggleGroup(schedule)"
                           on-hold="addOrRemoveToList(schedule)"
-                          on-swipe-right="placeOrder(schedule)"
-                          ng-class="{active: isGroupShown(schedule)}">
+                          on-swipe-right="placeOrder($event,schedule)"
+                         >
                     <i class="icon" ng-class="isGroupShown(schedule) ? 'ion-minus' : 'ion-plus'"></i>
                     &nbsp;{{schedule.attributes.title}}
                     <div style="padding-left: 20px">
                         <p class="pull-right">{{schedule.attributes.price | currency:"INR ":0}}<p>
                         <p>{{schedule.attributes.vendorId.attributes.fullName}}</p>
-                        <p>{{schedule.attributes.vendorId.attributes.address}}
-                        <span class="icon ion-ios-telephone-outline pull-right" ng-click="callMe(vendor,$event)">
-                             {{schedule.attributes.vendorId.attributes.contactNo}}
-                        </span>
+                        <p style="float: left;">{{schedule.attributes.vendorId.attributes.address}}
+                        <p star-rating max="5" rating-value="2" on-rating-selected="" class="pull-right"></p>
                         </p>
                     </div>
-                </ion-item>
-                <ion-item class="item-accordion"
-                          ng-show="isGroupShown(schedule)">
-                    <div class="card">
+                    <div style="padding-left: 20px" ng-show="isGroupShown(schedule)">
+                        <br/>
+                        <b>Menu List</b>
+                        <p >{{schedule.attributes.foodDescription}}</p>
 
-                        <div class="item item-text-wrap">
-                            {{schedule.attributes.foodDescription}}
-
-                            <button class="pull-right button button-positive" ng-click="placeOrder(schedule)">
-                                Order
-                            </button>
-                        </div>
+                        <p><button class="pull-right button button-positive" ng-click="placeOrder($event,schedule)">
+                            Order
+                        </button>
+                        </p>
                     </div>
                 </ion-item>
             </div>

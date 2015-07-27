@@ -1,10 +1,15 @@
 <ion-view view-title="Select date and time">
     <div id="customerLocation" style="height: 100%;" class="customerLocation"></div>
+    <div class="leaflet-control-zoom leaflet-bar leaflet-control" style="position: absolute;top: 50px;left: 10px;"><a
+            class="leaflet-control-zoom-in" href="javascript:void(0)"
+            title="Zoom in" ng-click="zoomIn()">+</a><a
+            class="leaflet-control-zoom-out" href="javascript:void(0)" title="Zoom out" ng-click="zoomOut()">-</a></div>
     <form class="form place-autocomplete" novalidate name="orderForm">
         <div class="row">
             <div class="button-bar">
                 <input class="form-control" g-places-autocomplete ng-model="place" placeholder="Search..."
-                       ng-change="searchLocation();" required name="location" style="margin-left:20px; margin-right: 10px;margin-bottom: 10px"/>
+                       ng-change="searchLocation();" required name="location"
+                       style="margin-left:20px; margin-right: 10px;margin-bottom: 10px"/>
             </div>
         </div>
         <div class="row">

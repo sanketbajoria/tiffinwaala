@@ -11,14 +11,14 @@ angular.module('starter.controllers')
         $scope.doLogin = function () {
             Parse.User.logIn($scope.loginData.username, $scope.loginData.password, {
                 success: function(user) {
+                    userSession.create(user);
                     if(!user.get('vendor')){
                         //user
-                        userSession.create(user);
                         $state.go('app.gpsView');
                     }
                     else{
                         //user is vendor
-                        $state.go('app.profile');
+                        $state.go('vendor.schedule');
                     }
                 },
                 error: function(user, error) {
