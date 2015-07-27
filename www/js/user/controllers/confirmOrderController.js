@@ -12,11 +12,12 @@ angular.module('TiffenWala.controllers')
         $scope.dateTime=$localStorage.getObject('dateTime');
 
     $scope.placeOrder = function(){
-        $localStorage.getObject('schedule')
+
         debugger
         var Order = Parse.Object.extend('Order');
         var myOrder = new Order();
-        myOrder.set("scheduleId", $localStorage.getObject('schedule'));
+        var Sc = Parse.Object.extend('Schedule');
+        myOrder.set("scheduleId",new Sc($localStorage.getObject('schedule')));
         myOrder.set("Location",  new Parse.GeoPoint($scope.address.geometry.location.A, $scope.address.geometry.location.F));
         myOrder.set("comment", 'NA');
         myOrder.set("preferredDateTime", new Date($localStorage.getObject('dateTime')));
