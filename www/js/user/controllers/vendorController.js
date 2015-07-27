@@ -50,7 +50,6 @@ angular.module('TiffenWala.controllers')
 
         function removeFunction (val)
         {
-            debugger
             var isExist = false;
             var index = 0;
             for(var index = 0 ; index< $scope.orderList.length ; index++ ){

@@ -14,7 +14,7 @@ angular.module('TiffenWala.controllers', [])
     			//$location.path("#/app/home");
     		}
     	}
-    	
+
     	$scope.go = function ( path ) {
     		  $location.path( path );
  	   	};

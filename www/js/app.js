@@ -102,7 +102,7 @@ angular.module('TiffenWala', ['ionic', 'TiffenWala.controllers','google.places',
                 }
             })
             .state('app.vendors', {
-                url: "/vendors/:city",
+                url: "/vendors",
                 views: {
                     '/content': {
                         templateUrl: "templates/vendors.html",
@@ -120,7 +120,7 @@ angular.module('TiffenWala', ['ionic', 'TiffenWala.controllers','google.places',
                 }
             })
             .state('app.gpsView', {
-                url: "/gpsView/:id",
+                url: "/gpsView",
                 views: {
                     'content': {
                         templateUrl: "templates/gpsView.html",

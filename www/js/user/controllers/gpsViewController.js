@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('TiffenWala.controllers')
-.controller('GpsViewCtrl', function ($scope, $stateParams,$location,$localStorage) {
+.controller('GpsViewCtrl', function ($scope, $stateParams,$location,$localStorage,$state) {
     $scope.place = null;
     $scope.order={};
     var customerLocation = L.map('customerLocation', {
@@ -89,7 +89,7 @@ angular.module('TiffenWala.controllers')
         if(form.$valid) {
             $localStorage.setObject('address', $scope.place);
             $localStorage.setObject('dateTime', $scope.order.dateTime);
-            $location.url('app/vendors/jaipur');
+            $state.go('app.vendors');
         }
     }
 
