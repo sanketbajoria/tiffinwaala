@@ -19,7 +19,7 @@
 
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">Order Date</span>
-                    <ionic-datepicker idate="schedule.orderDate" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback" title="title">
+                    <ionic-datepicker idate="schedule.orderDate" disablepreviousdates="true"  disablefuturedates="false" callback="datePickerCallback" title="DATE_PICKER.title">
                         <button class="button button-positive"> {{ schedule.orderDate | date:'dd - MMMM - yyyy' }} </button>
                     </ionic-datepicker>
 
@@ -27,7 +27,7 @@
 
                 <label class="item item-input item-stacked-label">
                     <span class="input-label">CutOff Time</span>
-                    <ionic-timepicker etime="schedule.orderCutOffTime" format="slots.format" step="slots.step" callback="timePickerCallback">
+                    <ionic-timepicker etime="schedule.orderCutOffTime" format="TIME_PICKER.format" step="TIME_PICKER.step" callback="timePickerCallback">
                         <button class="button button-positive"> {{epochTime() | date: 'shortTime'}} </button>
                     </ionic-timepicker>
                 </label>

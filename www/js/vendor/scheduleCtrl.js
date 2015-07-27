@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('starter.controllers')
-    .controller('scheduleCtrl', function ($scope, $location, $ionicHistory, userSession, $stateParams, $state) {
+    .controller('scheduleCtrl', function ($scope, $location, $ionicHistory, userSession, $stateParams, $state, $appUtil, DATE_PICKER, TIME_PICKER) {
 
         var Schedule = Parse.Object.extend("Schedule");
 
@@ -25,13 +25,7 @@ angular.module('starter.controllers')
         }
 
         $scope.epochTime = function(){
-            var d = new Date();
-            var t = $scope.schedule.orderCutOffTime;
-            //console.log(t);
-            d.setHours(Math.floor(t/3600));
-            d.setMinutes((t % 3600)/60);
-            //console.log(d);
-            return d.getTime();
+            return $appUtil.getEpochTime($scope.schedule.orderCutOffTime);
         }
 
         $scope.datePickerCallback = function (val) {
@@ -53,10 +47,10 @@ angular.module('starter.controllers')
 
 
 
-        $scope.title = "Custom Title";
+        $scope.DATE_PICKER = DATE_PICKER;
 
 
-        $scope.slots = {format: 12, step: 15};
+        $scope.TIME_PICKER = TIME_PICKER;
 
 
         $scope.create = function () {
