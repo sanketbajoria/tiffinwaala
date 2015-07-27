@@ -2,7 +2,7 @@
  * Created by saurabhsharma01 on 08-Jul-15.
  */
 angular.module('TiffenWala.controllers')
-.controller('VendorListByScheduleCtrl', function ($scope, Vendors, $location, $state, $localStorage) {
+.controller('VendorListByScheduleCtrl', function ($scope, $location, $state, $localStorage) {
         $scope.schedules=[];
         $scope.orderList=[];
         var query = new Parse.Query("Schedule");

@@ -104,7 +104,7 @@ angular.module('TiffenWala', ['ionic', 'TiffenWala.controllers','google.places',
             .state('app.vendors', {
                 url: "/vendors",
                 views: {
-                    '/content': {
+                    'content': {
                         templateUrl: "templates/vendors.html",
                         controller: 'VendorListByScheduleCtrl'
                     }
