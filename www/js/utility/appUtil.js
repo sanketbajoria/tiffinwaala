@@ -1,4 +1,4 @@
-angular.module('ionic.utils', [])
+angular.module('ionic.utils',[])
 
     .factory('$appUtil', ['$window', function($window) {
         return {
