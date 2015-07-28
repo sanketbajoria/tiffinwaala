@@ -12,8 +12,6 @@ angular.module('TiffenWala.controllers')
         $scope.dateTime=$localStorage.getObject('dateTime');
 
     $scope.placeOrder = function(){
-
-        debugger
         var Order = Parse.Object.extend('Order');
         var myOrder = new Order();
         var Sc = Parse.Object.extend('Schedule');
