@@ -18,10 +18,14 @@
                 <span class="input-label">Address</span>
                 <input type="text" placeholder="Address" ng-model="user.attributes.address" >
             </label>
-            <p>Order Time:{{dateTime|date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
-            <p>Delivery Address:{{address.formatted_address}}</p>
-            <p>Menu:{{schedule.foodDescription}}</p>
-            <p>Vendor:{{schedule.vendorId.objectId}}</p>
+            <div ng-repeat="schedule in orderList">
+                <div style="border:1px solid">
+                <p>Order Time:{{dateTime|date:'yyyy-MM-dd HH:mm:ss Z'}}</p>
+                <p>Delivery Address:{{address.formatted_address}}</p>
+                <p>Menu:{{schedule.foodDescription}}</p>
+                <p>Vendor:{{schedule.vendorId.objectId}}</p>
+                </div>
+            </div>
             <button class="button button-block button-positive" ng-click="placeOrder()">
                 Confirm order
             </button>

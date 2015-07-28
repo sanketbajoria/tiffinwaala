@@ -3,6 +3,7 @@
  */
 angular.module('TiffenWala.controllers')
 .controller('VendorListByScheduleCtrl', function ($scope, $location, $state, $localStorage) {
+        $scope.multiorderbutton = false;
         $scope.schedules=[];
         $scope.orderList=[];
         var query = new Parse.Query("Schedule");
@@ -34,18 +35,41 @@ angular.module('TiffenWala.controllers')
 
         $scope.placeOrder =function (e,schedule) {
             e.stopPropagation();
+            $scope.orderList.push(schedule);
             $localStorage.setObject('schedule',schedule);
+            $localStorage.setObject('orders',$scope.orderList);
             $state.go('app.confirmOrder');
         };
 
-        $scope.addOrRemoveToList = function(schedule){
+        $scope.isSelected = function (sch) {
+            for(var index = 0 ; index< $scope.orderList.length ; index++ ){
+                if($scope.orderList[index].id === sch.id){
+                    return true;
+                    break;
+                }
+            }
+            return false;
+        };
 
+        $scope.multiOrders= function(){
+            $localStorage.setObject('orders',$scope.orderList);
+            $state.go('app.confirmOrder');
+        }
+        $scope.addOrRemoveToList = function(schedule,index){
+            //debugger
+            $('#'+schedule.id).attr('background-color','#FFFFFF');
             var isExist = removeFunction(schedule.id);
             console.log('isExist: ',isExist);
             if(!isExist) {
                 $scope.orderList.push(schedule);
+                $('#'+schedule.id).attr('background-color','gainsboro');
             }
             console.log('orderList',$scope.orderList);
+            if($scope.orderList.length > 0){
+                $scope.multiorderbutton = true;
+            } else {
+                $scope.multiorderbutton = false;
+            }
         }
 
         function removeFunction (val)

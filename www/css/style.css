@@ -476,3 +476,6 @@ ul.rating {
 .rating .filled {
     color: red;
 }
+.selected {
+    background-color: gainsboro !important;
+}

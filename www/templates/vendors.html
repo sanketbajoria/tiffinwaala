@@ -14,12 +14,17 @@
     </ion-content>
 </ion-view>-->
 <ion-view view-title="Tiffien wale">
+    <ion-nav-buttons side="primary">
+        <button class="button" ng-show="multiorderbutton" style="background-color: blue;border-color: blue;" ng-click="multiOrders()">
+            Orders
+        </button>
+    </ion-nav-buttons>
     <ion-content class="has-header">
         <ion-list>
             <div ng-repeat="schedule in schedules">
-                <ion-item class="item-stable item-venders"
+                <ion-item class="item-stable item-venders" ng-class="{'selected':isSelected(schedule)}"
                           ng-click="toggleGroup(schedule)"
-                          on-hold="addOrRemoveToList(schedule)"
+                          on-hold="addOrRemoveToList(schedule,$index)"
                           on-swipe-right="placeOrder($event,schedule)"
                          >
                     <i class="icon" ng-class="isGroupShown(schedule) ? 'ion-minus' : 'ion-plus'"></i>
